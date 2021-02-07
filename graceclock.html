@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<head>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap');
+        #countdown {
+            font-size: 10rem;
+            font-weight: bold;
+            color: white;
+            font-family: 'Roboto', sans-serif;
+
+            margin-top: -31px;
+             margin-bottom: 0px
+        }
+        #title, #under {
+            font-size: 2rem;
+            color: white;
+            font-family: 'Roboto', sans-serif;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+        #under {
+            text-align: right;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="title"></div>
+    <div id="countdown"></div>
+    <div id="under"></div>
+    <script src="https://momentjs.com/downloads/moment.min.js"></script>
+    <script>
+        //set time for event here
+        const goLive = moment("10:29:40 AM", "hh:mm:ss A");
+
+    setInterval(() => {
+        let timeLeft = goLive.diff(moment());
+        //set countdown start mins and seconds only active 3600 seconds is an hour
+        if(timeLeft > 0 && timeLeft < 3600000) {
+            document.getElementById("title").innerHTML = "SERVICE WILL BEGIN IN";
+            document.getElementById("countdown").innerHTML = moment.utc(timeLeft).format("mm:ss");
+            document.getElementById("countdown").style.marginTop = "-31px";
+            document.getElementById("under").innerHTML = "";
+        //set the pre-countdown text
+        }  else if(timeLeft >= 3600000) {
+            document.getElementById("title").innerHTML = "SERVICE WILL BEGIN AT";
+            document.getElementById("countdown").innerHTML = "10:30AM";
+            document.getElementById("countdown").style.fontSize = "6.5rem";
+            document.getElementById("countdown").style.marginTop = "-15px";
+            document.getElementById("under").innerHTML = "#gracelife";
+            document.getElementById("under").style.marginTop = "-15px";
+        //set the post-countdown text
+        }  else {
+            document.getElementById("countdown").innerHTML = "00:00";
+            document.getElementById("title").innerHTML = "SERVICE BEGINING";
+            document.getElementById("under").innerHTML = "";
+            document.getElementById("countdown").style.marginTop = "-31px";
+        }
+    }, 1000);
+    </script>
+   
+</body>
+</html>
